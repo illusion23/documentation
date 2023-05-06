@@ -115,4 +115,5 @@ def add_doc_link(app, pagename, templatename, context, doctree):
     source_suffix = app.config.source_suffix
     source_suffix = next(iter(source_suffix))
     context['github_link'] = lambda mode='edit': make_github_link(
-        app, 'content/%s%s' % (pagename, source_suffix), mode=mode)
+        app, f'content/{pagename}{source_suffix}', mode=mode
+    )
