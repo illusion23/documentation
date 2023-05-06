@@ -90,7 +90,7 @@ class BootstrapTranslator(HTML5Translator):
 
     def unknown_visit(self, node):
         print("unknown node", node.__class__.__name__)
-        self.body.append(u'[UNKNOWN NODE {}]'.format(node.__class__.__name__))
+        self.body.append(f'[UNKNOWN NODE {node.__class__.__name__}]')
         raise nodes.SkipNode
 
     # NOTE: seems that when we remove/comment this, we get the titles 5 times in the global toc
@@ -157,6 +157,6 @@ class BootstrapTranslator(HTML5Translator):
         classes.insert(0, "table")  # compat
 
         if 'align' in node:
-            classes.append('align-%s' % node['align'])
+            classes.append(f"align-{node['align']}")
         tag = self.starttag(node, 'table', CLASS=' '.join(classes))
         self.body.append(tag)

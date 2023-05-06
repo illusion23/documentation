@@ -19,7 +19,7 @@ def generate_redirects(app):
 
     source_suffix = next(iter(app.config.source_suffix))
 
-    if not type(app.builder) == builders.StandaloneHTMLBuilder:
+    if type(app.builder) != builders.StandaloneHTMLBuilder:
         logger.info("Redirects are only supported by the 'html' builder. Skipping...")
         return
 
@@ -28,7 +28,7 @@ def generate_redirects(app):
         pattern = re.compile(
             r'^[ \t]*([\w\-/]+{0})[ \t]+([\w\-/]+{0})[ \t]*(#.*)?$'.format(escaped_source_suffix)
         )
-        for line in redirects.readlines():
+        for line in redirects:
             # Exclude comment or empty lines
             if not line.rstrip() or line.startswith('#'):
                 continue
